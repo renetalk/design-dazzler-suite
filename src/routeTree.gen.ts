@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KursRouteImport } from './routes/kurs'
+import { Route as ForumIndexRouteImport } from './routes/forum/index'
+import { Route as ForumAustauschAlltagRouteImport } from './routes/forum/austausch-alltag'
+import { Route as KursverwaltungIndexRouteImport } from './routes/kursverwaltung/index'
+import { Route as KursverwaltungInhalteRouteImport } from './routes/kursverwaltung/inhalte'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KursRoute = KursRouteImport.update({
+  id: '/kurs',
+  path: '/kurs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForumIndexRoute = ForumIndexRouteImport.update({
+  id: '/forum/',
+  path: '/forum/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForumAustauschAlltagRoute = ForumAustauschAlltagRouteImport.update({
+  id: '/forum/austausch-alltag',
+  path: '/forum/austausch-alltag',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KursverwaltungIndexRoute = KursverwaltungIndexRouteImport.update({
+  id: '/kursverwaltung/',
+  path: '/kursverwaltung/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KursverwaltungInhalteRoute = KursverwaltungInhalteRouteImport.update({
+  id: '/kursverwaltung/inhalte',
+  path: '/kursverwaltung/inhalte',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kurs': typeof KursRoute
+  '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
+  '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
+  '/forum/': typeof ForumIndexRoute
+  '/kursverwaltung/': typeof KursverwaltungIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kurs': typeof KursRoute
+  '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
+  '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
+  '/forum': typeof ForumIndexRoute
+  '/kursverwaltung': typeof KursverwaltungIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kurs': typeof KursRoute
+  '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
+  '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
+  '/forum/': typeof ForumIndexRoute
+  '/kursverwaltung/': typeof KursverwaltungIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/kurs'
+    | '/forum/austausch-alltag'
+    | '/kursverwaltung/inhalte'
+    | '/forum/'
+    | '/kursverwaltung/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/kurs'
+    | '/forum/austausch-alltag'
+    | '/kursverwaltung/inhalte'
+    | '/forum'
+    | '/kursverwaltung'
+  id:
+    | '__root__'
+    | '/'
+    | '/kurs'
+    | '/forum/austausch-alltag'
+    | '/kursverwaltung/inhalte'
+    | '/forum/'
+    | '/kursverwaltung/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KursRoute: typeof KursRoute
+  ForumAustauschAlltagRoute: typeof ForumAustauschAlltagRoute
+  KursverwaltungInhalteRoute: typeof KursverwaltungInhalteRoute
+  ForumIndexRoute: typeof ForumIndexRoute
+  KursverwaltungIndexRoute: typeof KursverwaltungIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kurs': {
+      id: '/kurs'
+      path: '/kurs'
+      fullPath: '/kurs'
+      preLoaderRoute: typeof KursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forum/': {
+      id: '/forum/'
+      path: '/forum'
+      fullPath: '/forum/'
+      preLoaderRoute: typeof ForumIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forum/austausch-alltag': {
+      id: '/forum/austausch-alltag'
+      path: '/forum/austausch-alltag'
+      fullPath: '/forum/austausch-alltag'
+      preLoaderRoute: typeof ForumAustauschAlltagRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kursverwaltung/': {
+      id: '/kursverwaltung/'
+      path: '/kursverwaltung'
+      fullPath: '/kursverwaltung/'
+      preLoaderRoute: typeof KursverwaltungIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kursverwaltung/inhalte': {
+      id: '/kursverwaltung/inhalte'
+      path: '/kursverwaltung/inhalte'
+      fullPath: '/kursverwaltung/inhalte'
+      preLoaderRoute: typeof KursverwaltungInhalteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KursRoute: KursRoute,
+  ForumAustauschAlltagRoute: ForumAustauschAlltagRoute,
+  KursverwaltungInhalteRoute: KursverwaltungInhalteRoute,
+  ForumIndexRoute: ForumIndexRoute,
+  KursverwaltungIndexRoute: KursverwaltungIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
