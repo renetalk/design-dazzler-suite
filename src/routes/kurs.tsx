@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
@@ -17,6 +18,7 @@ export const Route = createFileRoute("/kurs")({
 });
 
 function Page2() {
+  const [tab, setTab] = useState<"notes" | "transcript">("notes");
   return (
     <div className="min-h-screen flex flex-col bg-surface-base font-body-md text-text-primary">
       <SiteHeader />
@@ -87,24 +89,24 @@ function Page2() {
 <div className="bg-surface-subtle p-space-lg rounded-2xl">
 
 <div className="flex items-center gap-space-sm pb-space-sm mb-space-md">
-<button className="pb-space-xs font-label-md text-label-md text-primary-container relative font-bold" id="tabNotesBtn">
+<button type="button" onClick={() => setTab("notes")} className={`pb-space-xs font-label-md text-label-md relative transition-colors ${tab === "notes" ? "text-primary-container font-bold" : "text-text-muted hover:text-text-primary"}`}>
                 Lektionsnotizen
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary-container" id="tabNotesIndicator"></span>
+                <span className={`absolute bottom-0 left-0 right-0 h-0.5 ${tab === "notes" ? "bg-primary-container" : "bg-transparent"}`}></span>
 </button>
-<button className="pb-space-xs font-label-md text-label-md text-text-muted hover:text-text-primary relative transition-colors" id="tabTranscriptBtn">
+<button type="button" onClick={() => setTab("transcript")} className={`pb-space-xs font-label-md text-label-md relative transition-colors ${tab === "transcript" ? "text-primary-container font-bold" : "text-text-muted hover:text-text-primary"}`}>
                 Deutsches Transkript
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-transparent" id="tabTranscriptIndicator"></span>
+                <span className={`absolute bottom-0 left-0 right-0 h-0.5 ${tab === "transcript" ? "bg-primary-container" : "bg-transparent"}`}></span>
 </button>
 </div>
 
-<div className="space-y-space-md" id="notesPanel">
+<div className={tab === "notes" ? "space-y-space-md" : "hidden"}>
 <p className="font-body-md text-body-md text-text-primary leading-relaxed">
                 In dieser Lektion lernen wir, wie auditive Reize und der natürliche Atemrhythmus nicht als Ablenkung, sondern als verlässliche Stütze der Achtsamkeit dienen können.
               </p>
 
 </div>
 
-<div className="hidden space-y-space-md font-body-md text-body-md text-text-primary" id="transcriptPanel">
+<div className={tab === "transcript" ? "space-y-space-md font-body-md text-body-md text-text-primary" : "hidden"}>
 <div className="p-space-md rounded-xl bg-surface-base shadow-sm text-body-sm space-y-space-sm text-text-muted max-h-60 overflow-y-auto">
 <p className=""><span className="font-bold text-text-primary">00:15</span> – Willkommen zur dritten Lektion von Freude am Leben. Heute untersuchen wir unser Verhältnis zu den Geräuschen unserer Umwelt.</p>
 <p className=""><span className="font-bold text-text-primary">04:30</span> – Oft glauben wir, für Meditation brauche es absolute Stille. Doch wahrer Friede entsteht, indem wir Geräusche als Objekt der Wahrnehmung willkommen heißen.</p>
