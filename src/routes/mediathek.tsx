@@ -231,7 +231,7 @@ function Page7() {
 <div className="flex items-center justify-between pt-space-md text-secondary">
 <span className="font-caption text-caption">Seite 1 von 30</span>
 <div className="flex items-center gap-1">
-<button className="p-1.5 rounded-lg bg-surface-base shadow-sm hover:bg-surface-muted disabled:opacity-40 transition-colors" disabled="" type="button">
+<button className="p-1.5 rounded-lg bg-surface-base shadow-sm hover:bg-surface-muted disabled:opacity-40 transition-colors" disabled type="button">
 <span className="material-symbols-outlined text-[18px]">chevron_left</span>
 </button>
 <button className="w-8 h-8 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md flex items-center justify-center shadow-sm" type="button">1</button>
