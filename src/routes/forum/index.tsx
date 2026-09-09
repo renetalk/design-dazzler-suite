@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/forum")({
+export const Route = createFileRoute("/forum/")({
   head: () => ({
     meta: [
       { title: "Forum – Kursaustausch | Tergar Campus" },

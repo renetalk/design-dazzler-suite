@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as KursRouteImport } from './routes/kurs'
+import { Route as MediathekRouteImport } from './routes/mediathek'
 import { Route as ForumIndexRouteImport } from './routes/forum/index'
 import { Route as ForumAustauschAlltagRouteImport } from './routes/forum/austausch-alltag'
 import { Route as KursverwaltungIndexRouteImport } from './routes/kursverwaltung/index'
@@ -24,6 +25,11 @@ const IndexRoute = IndexRouteImport.update({
 const KursRoute = KursRouteImport.update({
   id: '/kurs',
   path: '/kurs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediathekRoute = MediathekRouteImport.update({
+  id: '/mediathek',
+  path: '/mediathek',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ForumIndexRoute = ForumIndexRouteImport.update({
@@ -50,6 +56,7 @@ const KursverwaltungInhalteRoute = KursverwaltungInhalteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/kurs': typeof KursRoute
+  '/mediathek': typeof MediathekRoute
   '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
   '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
   '/forum/': typeof ForumIndexRoute
@@ -58,6 +65,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kurs': typeof KursRoute
+  '/mediathek': typeof MediathekRoute
   '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
   '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
   '/forum': typeof ForumIndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/kurs': typeof KursRoute
+  '/mediathek': typeof MediathekRoute
   '/forum/austausch-alltag': typeof ForumAustauschAlltagRoute
   '/kursverwaltung/inhalte': typeof KursverwaltungInhalteRoute
   '/forum/': typeof ForumIndexRoute
@@ -77,6 +86,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/kurs'
+    | '/mediathek'
     | '/forum/austausch-alltag'
     | '/kursverwaltung/inhalte'
     | '/forum/'
@@ -85,6 +95,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/kurs'
+    | '/mediathek'
     | '/forum/austausch-alltag'
     | '/kursverwaltung/inhalte'
     | '/forum'
@@ -93,6 +104,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/kurs'
+    | '/mediathek'
     | '/forum/austausch-alltag'
     | '/kursverwaltung/inhalte'
     | '/forum/'
@@ -102,6 +114,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KursRoute: typeof KursRoute
+  MediathekRoute: typeof MediathekRoute
   ForumAustauschAlltagRoute: typeof ForumAustauschAlltagRoute
   KursverwaltungInhalteRoute: typeof KursverwaltungInhalteRoute
   ForumIndexRoute: typeof ForumIndexRoute
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/kurs'
       fullPath: '/kurs'
       preLoaderRoute: typeof KursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mediathek': {
+      id: '/mediathek'
+      path: '/mediathek'
+      fullPath: '/mediathek'
+      preLoaderRoute: typeof MediathekRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/forum/': {
@@ -158,6 +178,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KursRoute: KursRoute,
+  MediathekRoute: MediathekRoute,
   ForumAustauschAlltagRoute: ForumAustauschAlltagRoute,
   KursverwaltungInhalteRoute: KursverwaltungInhalteRoute,
   ForumIndexRoute: ForumIndexRoute,

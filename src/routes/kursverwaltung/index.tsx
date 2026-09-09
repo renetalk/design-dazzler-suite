@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
-export const Route = createFileRoute("/kursverwaltung")({
+export const Route = createFileRoute("/kursverwaltung/")({
   head: () => ({
     meta: [
       { title: "Kursübersicht & Verwaltung | Tergar Campus" },
