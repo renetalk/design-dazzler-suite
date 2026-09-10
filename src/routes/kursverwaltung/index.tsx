@@ -115,10 +115,10 @@ function Page4() {
 </div>
 </div>
 <div className="flex items-center gap-2 self-end md:self-center shrink-0">
-<a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium" href="#">
+<Link to="/kursverwaltung/inhalte" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium">
 <span className="material-symbols-outlined text-[18px]">edit_note</span>
 <span className="">Inhalte verwalten</span>
-</a>
+</Link>
 <button className="p-2 rounded-lg border border-[#e5e7eb] text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Teilnehmende">
 <span className="material-symbols-outlined text-[20px]">people</span>
 </button>
@@ -162,10 +162,10 @@ function Page4() {
 </div>
 </div>
 <div className="flex items-center gap-2 self-end md:self-center shrink-0">
-<a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium" href="#">
+<Link to="/kursverwaltung/inhalte" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium">
 <span className="material-symbols-outlined text-[18px]">edit_note</span>
 <span className="">Inhalte verwalten</span>
-</a>
+</Link>
 <button className="p-2 rounded-lg border border-[#e5e7eb] text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Optionen">
 <span className="material-symbols-outlined text-[20px]">more_vert</span>
 </button>
@@ -206,10 +206,10 @@ function Page4() {
 </div>
 </div>
 <div className="flex items-center gap-2 self-end md:self-center shrink-0">
-<a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium" href="#">
+<Link to="/kursverwaltung/inhalte" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium">
 <span className="material-symbols-outlined text-[18px]">edit_note</span>
 <span className="">Inhalte verwalten</span>
-</a>
+</Link>
 <button className="p-2 rounded-lg border border-[#e5e7eb] text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Optionen">
 <span className="material-symbols-outlined text-[20px]">more_vert</span>
 </button>
@@ -250,10 +250,10 @@ function Page4() {
 </div>
 </div>
 <div className="flex items-center gap-2 self-end md:self-center shrink-0">
-<a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm border border-[#e5e7eb] transition-all font-medium" href="#">
+<Link to="/kursverwaltung/inhalte" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200 text-sm border border-[#e5e7eb] transition-all font-medium">
 <span className="material-symbols-outlined text-[18px]">draw</span>
 <span className="">Inhalte bearbeiten</span>
-</a>
+</Link>
 <button className="p-2 rounded-lg border border-[#e5e7eb] text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Optionen">
 <span className="material-symbols-outlined text-[20px]">more_vert</span>
 </button>
@@ -294,10 +294,10 @@ function Page4() {
 </div>
 </div>
 <div className="flex items-center gap-2 self-end md:self-center shrink-0">
-<a className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium" href="#">
+<Link to="/kursverwaltung/inhalte" className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#d9822b] text-white text-sm hover:bg-[#c27220] transition-colors shadow-sm font-medium">
 <span className="material-symbols-outlined text-[18px]">edit_note</span>
 <span className="">Inhalte verwalten</span>
-</a>
+</Link>
 <button className="p-2 rounded-lg border border-[#e5e7eb] text-gray-500 hover:text-gray-900 hover:bg-gray-50 transition-colors" title="Optionen">
 <span className="material-symbols-outlined text-[20px]">more_vert</span>
 </button>
@@ -361,10 +361,10 @@ function Page4() {
           </p>
 </div>
 </div>
-<a className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#b25e16] hover:text-[#8f4e00] transition-colors font-medium" href="#">
+<Link to="/mediathek" className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#b25e16] hover:text-[#8f4e00] transition-colors font-medium">
 <span className="">Zur Mediathek (Videos &amp; Audios)</span>
 <span className="material-symbols-outlined text-base">arrow_forward</span>
-</a>
+</Link>
 </div>
 </main>
 
