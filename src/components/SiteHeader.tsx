@@ -102,6 +102,17 @@ export function SiteHeader() {
             <span className="material-symbols-outlined text-[22px]">notifications</span>
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface-base"></span>
           </button>
+          <button
+            aria-label="Menü öffnen"
+            aria-expanded={mobileOpen}
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="md:hidden p-space-xs text-secondary hover:text-text-primary hover:bg-surface-muted rounded-full transition-colors"
+          >
+            <span className="material-symbols-outlined text-[24px]">
+              {mobileOpen ? "close" : "menu"}
+            </span>
+          </button>
           <div className="flex items-center gap-space-sm pl-space-xs cursor-pointer group">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-md text-label-md font-semibold">
               AM
