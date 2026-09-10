@@ -126,6 +126,36 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
+      {mobileOpen && (
+        <nav className="md:hidden border-t border-subtle/40 bg-surface-base px-gutter-mobile py-space-md flex flex-col gap-space-xxs shadow-lg">
+          <Link to="/" className={`${pill} block ${pathname === "/" ? active : idle}`}>
+            Mein Kurs
+          </Link>
+          <Link
+            to="/forum"
+            className={`${pill} block ${pathname.startsWith("/forum") ? active : idle}`}
+          >
+            Forum
+          </Link>
+          <div className="mt-space-xxs pt-space-xs border-t border-subtle/40">
+            <div className="px-space-md pb-space-xxs font-eyebrow text-eyebrow tracking-widest text-text-muted uppercase">
+              Kursverwaltung
+            </div>
+            <Link
+              to="/kursverwaltung"
+              className={`${pill} block ${pathname.startsWith("/kursverwaltung") ? active : idle}`}
+            >
+              Kursübersicht &amp; Kohorten
+            </Link>
+            <Link
+              to="/mediathek"
+              className={`${pill} block ${pathname.startsWith("/mediathek") ? active : idle}`}
+            >
+              Mediathek
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
