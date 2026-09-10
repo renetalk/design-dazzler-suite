@@ -9,11 +9,15 @@ const active = "text-primary bg-accent-ochre-light";
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const adminActive =
     pathname.startsWith("/kursverwaltung") || pathname.startsWith("/mediathek");
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
