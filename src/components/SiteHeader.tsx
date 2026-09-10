@@ -9,11 +9,15 @@ const active = "text-primary bg-accent-ochre-light";
 export function SiteHeader() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const adminActive =
     pathname.startsWith("/kursverwaltung") || pathname.startsWith("/mediathek");
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMobileOpen(false);
+  }, [pathname]);
   useEffect(() => {
     function onDoc(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
@@ -98,6 +102,17 @@ export function SiteHeader() {
             <span className="material-symbols-outlined text-[22px]">notifications</span>
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-container ring-2 ring-surface-base"></span>
           </button>
+          <button
+            aria-label="Menü öffnen"
+            aria-expanded={mobileOpen}
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="md:hidden p-space-xs text-secondary hover:text-text-primary hover:bg-surface-muted rounded-full transition-colors"
+          >
+            <span className="material-symbols-outlined text-[24px]">
+              {mobileOpen ? "close" : "menu"}
+            </span>
+          </button>
           <div className="flex items-center gap-space-sm pl-space-xs cursor-pointer group">
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary font-label-md text-label-md font-semibold">
               AM
@@ -111,6 +126,36 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
+      {mobileOpen && (
+        <nav className="md:hidden border-t border-subtle/40 bg-surface-base px-gutter-mobile py-space-md flex flex-col gap-space-xxs shadow-lg">
+          <Link to="/" className={`${pill} block ${pathname === "/" ? active : idle}`}>
+            Mein Kurs
+          </Link>
+          <Link
+            to="/forum"
+            className={`${pill} block ${pathname.startsWith("/forum") ? active : idle}`}
+          >
+            Forum
+          </Link>
+          <div className="mt-space-xxs pt-space-xs border-t border-subtle/40">
+            <div className="px-space-md pb-space-xxs font-eyebrow text-eyebrow tracking-widest text-text-muted uppercase">
+              Kursverwaltung
+            </div>
+            <Link
+              to="/kursverwaltung"
+              className={`${pill} block ${pathname.startsWith("/kursverwaltung") ? active : idle}`}
+            >
+              Kursübersicht &amp; Kohorten
+            </Link>
+            <Link
+              to="/mediathek"
+              className={`${pill} block ${pathname.startsWith("/mediathek") ? active : idle}`}
+            >
+              Mediathek
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
