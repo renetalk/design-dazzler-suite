@@ -304,7 +304,7 @@ function Page4() {
 </div>
 </article>
 
-<article className="p-5 sm:p-6 hover:bg-[#fffdf9] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-5 opacity-80">
+<Link to="/mediathek"rticle className="p-5 sm:p-6 hover:bg-[#fffdf9] transition-colors flex flex-col md:flex-row md:items-center justify-between gap-5 opacity-80">
 <div className="flex items-start gap-4">
 <div className="size-12 rounded-xl bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500 shrink-0 mt-0.5">
 <span className="material-symbols-outlined text-[26px]">inventory_2</span>
@@ -364,7 +364,7 @@ function Page4() {
 <a className="shrink-0 inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#b25e16] hover:text-[#8f4e00] transition-colors font-medium" href="#">
 <span className="">Zur Mediathek (Videos &amp; Audios)</span>
 <span className="material-symbols-outlined text-base">arrow_forward</span>
-</a>
+</Link>
 </div>
 </main>
 
