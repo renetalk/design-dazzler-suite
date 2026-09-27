@@ -16,16 +16,17 @@ export const Route = createFileRoute("/forum/neu")({
 });
 
 function Page() {
+ const [audience,setAudience]=useState("group"); const [title,setTitle]=useState(""); const [message,setMessage]=useState(""); const [submitted,setSubmitted]=useState(false);
   return <div className="min-h-screen flex flex-col bg-surface-base font-body-md text-text-primary">
     <SiteHeader />
     <main className="w-full pt-20 bg-surface-base min-h-[calc(100vh-20rem)]"><div className="flex flex-col w-full">
 <div className="w-full bg-gradient-to-b from-surface-subtle via-surface-base to-surface-muted py-space-xl md:py-space-3xl">
 <div className="max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop">
 <div className="mb-space-lg">
-<a className="inline-flex items-center gap-space-xs text-secondary hover:text-text-primary transition-colors font-body-sm text-body-sm group" href="#">
+<Link to="/forum" className="inline-flex items-center gap-space-xs text-secondary hover:text-text-primary transition-colors font-body-sm text-body-sm group" href="#">
 <span className="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1">arrow_back</span>
 <span className="">Zurück zur Themenübersicht</span>
-</a>
+</Link>
 </div>
 <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-start">
 <div className="lg:col-span-8 flex flex-col gap-space-lg">
@@ -43,12 +44,12 @@ function Page() {
 <span className="font-caption text-caption text-text-muted">Erforderlich</span>
 </label>
 <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-xs" id="audience-selector">
-<div className="cursor-pointer rounded-xl p-space-md bg-accent-ochre-light shadow-sm transition-all flex flex-col justify-between gap-space-sm relative" id="option-group">
+<div className={`cursor-pointer rounded-xl p-space-md ${audience === "group" ? "bg-accent-ochre-light" : "bg-surface-subtle"} shadow-sm transition-all flex flex-col justify-between gap-space-sm relative`} id="option-group" role="button" tabIndex={0} onClick={()=>setAudience("group")}>
 <div className="flex items-start justify-between">
 <div className="w-10 h-10 rounded-full bg-surface-tint-warm flex items-center justify-center text-primary">
 <span className="material-symbols-outlined text-[22px]">forum</span>
 </div>
-<span className="material-symbols-outlined text-primary text-[24px]" id="badge-group">check_circle</span>
+<span className="material-symbols-outlined text-primary text-[24px]" id="badge-group">{audience === "group" ? "check_circle" : "radio_button_unchecked"}</span>
 </div>
 <div className="flex flex-col gap-space-xxs">
 <span className="font-body-strong text-body-strong text-text-primary">Öffentlicher Gruppen-Chat</span>
@@ -61,12 +62,12 @@ function Page() {
 <span className="">Kohorte: Herbst 2025 • Joy of Living 1</span>
 </div>
 </div>
-<div className="cursor-pointer rounded-xl p-space-md bg-surface-subtle shadow-sm transition-all flex flex-col justify-between gap-space-sm relative opacity-85 hover:opacity-100" id="option-private">
+<div className={`cursor-pointer rounded-xl p-space-md ${audience === "private" ? "bg-accent-ochre-light" : "bg-surface-subtle"} shadow-sm transition-all flex flex-col justify-between gap-space-sm relative opacity-85 hover:opacity-100`} id="option-private" role="button" tabIndex={0} onClick={()=>setAudience("private")}>
 <div className="flex items-start justify-between">
 <div className="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
 <span className="material-symbols-outlined text-[22px]">lock</span>
 </div>
-<span className="material-symbols-outlined text-text-muted text-[24px]" id="badge-private">radio_button_unchecked</span>
+<span className="material-symbols-outlined text-text-muted text-[24px]" id="badge-private">{audience === "private" ? "check_circle" : "radio_button_unchecked"}</span>
 </div>
 <div className="flex flex-col gap-space-xxs">
 <span className="font-body-strong text-body-strong text-text-primary">Vertraulich an Seminarleitung</span>
@@ -86,7 +87,7 @@ function Page() {
 <span className="">2. Titel des Themas</span>
 <span className="font-caption text-caption text-text-muted">Prägnant formulieren</span>
 </label>
-<input className="w-full px-space-md py-space-sm rounded-lg bg-surface-subtle text-text-primary placeholder:text-text-muted font-body-md text-body-md focus:bg-surface-base focus:outline-none transition-all shadow-inner" id="topic-title" placeholder="z. B. Wie geht ihr mit Gedanken während der Gehmeditation um?" type="text"/>
+<input className="w-full px-space-md py-space-sm rounded-lg bg-surface-subtle text-text-primary placeholder:text-text-muted font-body-md text-body-md focus:bg-surface-base focus:outline-none transition-all shadow-inner" id="topic-title" value={title} onChange={e=>setTitle(e.target.value)} placeholder="z. B. Wie geht ihr mit Gedanken während der Gehmeditation um?" type="text"/>
 <span className="font-caption text-caption text-text-muted">
                 Wähle einen prägnanten Titel, damit andere den Inhalt schnell erfassen können.
               </span>
@@ -112,7 +113,7 @@ function Page() {
 </button>
 </div>
 </div>
-<textarea className="w-full p-space-md rounded-lg bg-surface-subtle text-text-primary placeholder:text-text-muted font-body-md text-body-md focus:bg-surface-base focus:outline-none transition-all resize-y shadow-inner" id="topic-content" placeholder="Beschreibe hier deine Beobachtung, Frage oder Praxiserfahrung..." rows="7"></textarea>
+<textarea className="w-full p-space-md rounded-lg bg-surface-subtle text-text-primary placeholder:text-text-muted font-body-md text-body-md focus:bg-surface-base focus:outline-none transition-all resize-y shadow-inner" id="topic-content" value={message} onChange={e=>setMessage(e.target.value)} placeholder="Beschreibe hier deine Beobachtung, Frage oder Praxiserfahrung..." rows={7}></textarea>
 <div className="flex items-start gap-space-xs pt-space-xxs text-secondary">
 <span className="material-symbols-outlined text-[18px] text-primary shrink-0 mt-0.5">self_improvement</span>
 <span className="font-caption text-caption leading-relaxed">
@@ -140,12 +141,12 @@ function Page() {
 </div>
 </div>
 <div className="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md">
-<a className="w-full sm:w-auto px-space-lg py-space-sm text-center rounded-lg font-label-md text-label-md text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors" href="#">
+<Link to="/forum" className="w-full sm:w-auto px-space-lg py-space-sm text-center rounded-lg font-label-md text-label-md text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors" href="#">
                 Abbrechen
-              </a>
+              </Link>
 <div className="w-full sm:w-auto flex items-center gap-space-sm">
-<button className="w-full sm:w-auto px-space-xl py-space-sm rounded-lg bg-primary-container hover:bg-accent-ochre-hover text-on-primary font-body-strong text-body-strong shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-space-xs" id="submit-btn" type="button">
-<span id="submit-text" className="">Thema veröffentlichen</span>
+<button className="w-full sm:w-auto px-space-xl py-space-sm rounded-lg bg-primary-container hover:bg-accent-ochre-hover text-on-primary font-body-strong text-body-strong shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-space-xs" id="submit-btn" type="button" onClick={()=>{if(title.trim() && message.trim())setSubmitted(true);else document.getElementById(!title.trim()?"topic-title":"topic-content")?.focus()}}>
+<span id="submit-text" className="">{submitted ? "Thema veröffentlicht" : "Thema veröffentlichen"}</span>
 <span className="material-symbols-outlined text-[20px]" id="submit-icon">send</span>
 </button>
 </div>

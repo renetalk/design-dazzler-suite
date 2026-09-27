@@ -16,11 +16,11 @@ export const Route = createFileRoute("/kursverwaltung/inhalte")({
 });
 
 function Page() {
+ const [newLesson,setNewLesson]=useState(false);
   return <div className="min-h-screen flex flex-col bg-surface-base font-body-md text-text-primary">
     <SiteHeader />
     <main className="w-full pt-20 bg-surface-base min-h-[calc(100vh-20rem)]"><div className="flex flex-col w-full">
 <div className="max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop w-full py-space-xl">
- Top Meta & Title Bar 
 <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg pb-space-2xl">
 <div className="space-y-space-xs max-w-3xl">
 <div className="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-accent-ochre-light text-primary font-eyebrow text-eyebrow tracking-wider uppercase">
@@ -35,24 +35,20 @@ function Page() {
 <div className="flex items-center gap-space-sm shrink-0">
 </div>
 </div>
- Quick Metrics (3 Minimal Cards) 
- Core Area A: Edit / Create Lesson Workspace 
 <div className="flex flex-col lg:flex-row items-start gap-space-xl mb-space-4xl">
  Left Sidebar: Kursbaum / Modulübersicht 
 <aside className="w-full lg:w-80 xl:w-96 shrink-0 bg-surface-subtle rounded-xl p-space-md shadow-sm space-y-space-md border border-border-subtle/50 lg:sticky lg:top-24">
 <div className="flex items-center justify-between pb-space-xs border-b border-border-subtle/40">
 <div>
 <span className="font-eyebrow text-eyebrow text-text-muted uppercase tracking-wider block">Kursstruktur</span>
-<h2 className="font-headline-sm text-headline-sm text-text-primary">Alle 6 Module</h2>
+<h2 className="font-headline-sm text-headline-sm text-text-primary">Alle 6 Module</h2>{newLesson && <span className="text-caption text-primary">Neues Unterkapitel angelegt</span>}
 </div>
-<button type="button" className="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-primary-container text-on-primary font-label-md text-caption hover:bg-accent-ochre-hover transition-colors shadow-sm cursor-pointer" id="btnNewLessonSidebar">
+<button type="button" className="inline-flex items-center gap-1 px-space-xs py-1 rounded bg-primary-container text-on-primary font-label-md text-caption hover:bg-accent-ochre-hover transition-colors shadow-sm cursor-pointer" id="btnNewLessonSidebar" onClick={()=>setNewLesson(true)}>
 <span className="material-symbols-outlined text-[16px]">add</span>
 <span className="">Neu</span>
 </button>
 </div>
- Compact Tree Navigation 
 <nav className="space-y-space-xs font-body-sm text-body-sm" aria-label="Modulnavigation">
- Modul 1 
 <div className="p-space-xs rounded-lg bg-surface-base hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="flex items-center gap-space-xs min-w-0">
 <span className="w-6 h-6 rounded-full bg-surface-muted text-secondary font-label-md text-caption flex items-center justify-center shrink-0">1</span>
@@ -63,7 +59,6 @@ function Page() {
 </div>
 <span className="material-symbols-outlined text-text-muted text-[18px] shrink-0">chevron_right</span>
 </div>
- Modul 2 
 <div className="p-space-xs rounded-lg bg-surface-base hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="flex items-center gap-space-xs min-w-0">
 <span className="w-6 h-6 rounded-full bg-surface-muted text-secondary font-label-md text-caption flex items-center justify-center shrink-0">2</span>
@@ -74,7 +69,6 @@ function Page() {
 </div>
 <span className="material-symbols-outlined text-text-muted text-[18px] shrink-0">chevron_right</span>
 </div>
- Modul 3: Active & Expanded Accordion 
 <div className="rounded-lg bg-accent-ochre-light/40 border border-primary-container/30 overflow-hidden">
 <div className="p-space-xs bg-accent-ochre-light flex items-center justify-between gap-space-xs cursor-pointer">
 <div className="flex items-center gap-space-xs min-w-0">
@@ -86,9 +80,7 @@ function Page() {
 </div>
 <span className="material-symbols-outlined text-primary text-[18px] shrink-0">expand_less</span>
 </div>
- Indented Subchapters 
 <div className="p-space-xs space-y-1 bg-surface-base/80 pl-space-sm border-l-2 border-primary-container ml-space-xs my-1">
- 3.1 
 <div className="p-space-xs rounded bg-surface-subtle hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="min-w-0">
 <div className="flex items-center gap-1">
@@ -98,7 +90,6 @@ function Page() {
 <span className="text-[11px] text-text-muted block">1 Video (12 Min.)</span>
 </div>
 </div>
- 3.2 Active Item 
 <div className="p-space-xs rounded bg-accent-ochre-light border border-primary-container/40 flex items-center justify-between gap-space-xs shadow-sm">
 <div className="min-w-0">
 <div className="flex items-center gap-1">
@@ -109,7 +100,6 @@ function Page() {
 </div>
 <span className="w-2 h-2 rounded-full bg-primary-container shrink-0"></span>
 </div>
- 3.3 
 <div className="p-space-xs rounded bg-surface-subtle hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="min-w-0">
 <div className="flex items-center gap-1">
@@ -121,7 +111,6 @@ function Page() {
 </div>
 </div>
 </div>
- Modul 4 
 <div className="p-space-xs rounded-lg bg-surface-base hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="flex items-center gap-space-xs min-w-0">
 <span className="w-6 h-6 rounded-full bg-surface-muted text-secondary font-label-md text-caption flex items-center justify-center shrink-0">4</span>
@@ -132,7 +121,6 @@ function Page() {
 </div>
 <span className="material-symbols-outlined text-text-muted text-[18px] shrink-0">chevron_right</span>
 </div>
- Modul 5 
 <div className="p-space-xs rounded-lg bg-surface-base hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="flex items-center gap-space-xs min-w-0">
 <span className="w-6 h-6 rounded-full bg-surface-muted text-secondary font-label-md text-caption flex items-center justify-center shrink-0">5</span>
@@ -143,7 +131,6 @@ function Page() {
 </div>
 <span className="material-symbols-outlined text-text-muted text-[18px] shrink-0">chevron_right</span>
 </div>
- Modul 6 
 <div className="p-space-xs rounded-lg bg-surface-base hover:bg-surface-muted transition-colors cursor-pointer flex items-center justify-between gap-space-xs">
 <div className="flex items-center gap-space-xs min-w-0">
 <span className="w-6 h-6 rounded-full bg-surface-muted text-secondary font-label-md text-caption flex items-center justify-center shrink-0">6</span>
@@ -155,7 +142,6 @@ function Page() {
 <span className="material-symbols-outlined text-text-muted text-[18px] shrink-0">chevron_right</span>
 </div>
 </nav>
- Quick Add Subchapter button 
 <div className="pt-space-xs border-t border-border-subtle/40">
 <button type="button" className="w-full py-1.5 rounded-lg bg-surface-base hover:bg-surface-container text-text-primary font-label-md text-body-sm transition-colors border border-border-subtle/60 flex items-center justify-center gap-1 cursor-pointer">
 <span className="material-symbols-outlined text-[16px]">add</span>
@@ -163,15 +149,10 @@ function Page() {
 </button>
 </div>
 </aside>
- Right Main Area: Workspace Editor 
 <div className="flex-1 min-w-0 space-y-space-lg w-full">
- Editor Header & Breadcrumb 
 <div className="space-y-space-md pb-space-md border-b border-border-subtle/50"><div className="flex flex-col md:flex-row md:items-center justify-between gap-space-sm"><div className="flex flex-col gap-1"><div className="flex items-center gap-space-xs text-caption font-caption text-text-muted flex-wrap"><span className="font-bold text-primary uppercase tracking-wider">Aktiver Editor-Fokus</span><span className="">›</span><span className="font-body-strong text-body-strong text-text-primary">Modul 3</span><span className="">›</span><span className="px-space-xs py-0.5 rounded bg-accent-ochre-light text-primary font-bold">Unterkapitel 3.2: Den Atem als Anker vertiefen</span></div><div className="flex items-center gap-space-sm pt-1"><span className="w-2.5 h-2.5 rounded-full bg-primary-container"></span><h2 className="font-headline-md text-headline-md text-text-primary">Editor: Unterkapitel 3.2 bearbeiten</h2></div></div></div><div className="p-space-md rounded-xl bg-surface-subtle border border-border-subtle/50 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-space-md"><div className="flex flex-wrap items-center gap-space-md"><div className="h-6 w-px bg-border-subtle/60 hidden sm:block"></div><div className="flex items-center gap-space-xs"><label className="font-label-md text-label-md text-text-primary" htmlFor="moduleReleaseDate">Freischaltung:</label><input className="px-space-sm py-1 rounded-lg bg-surface-base font-body-sm text-body-sm text-text-primary shadow-sm border border-border-subtle/40 focus:outline-none" id="moduleReleaseDate" type="date" defaultValue="2024-11-20"/><span className="text-caption text-text-muted hidden md:inline">(ab 00:01 MEZ)</span></div></div></div></div>
- Editor Form Grid 
 <div className="grid grid-cols-1 gap-space-xl">
- Form Fields & Media Sections (xl:col-span-8) 
 <div className="space-y-space-xl w-full">
- Basic Info 
 <div className="bg-surface-subtle p-space-xl rounded-xl shadow-sm space-y-space-md border border-border-subtle/40">
 <div>
 <label className="block font-label-md text-label-md text-text-primary mb-space-xxs" htmlFor="moduleTitle">Titel & Unterkapitelbezeichnung</label>
@@ -179,10 +160,9 @@ function Page() {
 </div>
 <div>
 <label className="block font-label-md text-label-md text-text-primary mb-space-xxs" htmlFor="moduleDescription">Kurzbeschreibung & Lektionsnotizen für Teilnehmende</label>
-<textarea className="w-full px-space-md py-2.5 rounded-lg bg-surface-base font-body-md text-body-md text-text-primary shadow-sm focus:outline-none focus:bg-surface-base leading-relaxed border border-border-subtle/40" id="moduleDescription" rows="4">In dieser Einheit vertiefen wir das sensorische Gewahrsein anhand äußerer Klänge und des natürlichen Atems. Klänge sind weder störend noch heilig – sie dienen als lebendiger Spiegel des gegenwärtigen Geistes.</textarea>
+<textarea className="w-full px-space-md py-2.5 rounded-lg bg-surface-base font-body-md text-body-md text-text-primary shadow-sm focus:outline-none focus:bg-surface-base leading-relaxed border border-border-subtle/40" id="moduleDescription" rows={4} defaultValue="In dieser Einheit vertiefen wir das sensorische Gewahrsein anhand äußerer Klänge und des natürlichen Atems. Klänge sind weder störend noch heilig – sie dienen als lebendiger Spiegel des gegenwärtigen Geistes."/>
 </div>
 </div>
- Video Unterweisung 
 <div className="bg-surface-subtle p-space-xl rounded-xl shadow-sm space-y-space-md border border-border-subtle/40">
 <div className="flex items-center justify-between">
 <div>
@@ -240,7 +220,6 @@ function Page() {
 </button>
 </div>
 <div className="space-y-space-xs">
- Audio 1 
 <div className="p-space-md rounded-lg bg-surface-base shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-space-md min-w-0 w-full sm:w-auto">
 <div className="w-12 h-12 rounded-lg bg-accent-ochre-light text-primary flex items-center justify-center shrink-0">
@@ -265,7 +244,6 @@ function Page() {
 </button>
 </div>
 </div>
- Audio 2 
 <div className="p-space-md rounded-lg bg-surface-base shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-space-md min-w-0 w-full sm:w-auto">
 <div className="w-12 h-12 rounded-lg bg-surface-muted text-secondary flex items-center justify-center shrink-0">
@@ -292,7 +270,6 @@ function Page() {
 </div>
 </div>
 </div>
- Begleitmaterialien (PDF-Uploads) 
 <div className="bg-surface-subtle p-space-xl rounded-xl shadow-sm space-y-space-md border border-border-subtle/40">
 <div className="flex items-center justify-between">
 <div>
@@ -326,11 +303,9 @@ function Page() {
 </div>
 </div>
 </div>
- Publishing Settings Sidebar Column (xl:col-span-4) 
 </div>
 </div>
 </div>
- Core Area B: Overview of all Modules in Course 
 </div>
 
 </div></main>
