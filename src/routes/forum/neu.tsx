@@ -16,7 +16,7 @@ export const Route = createFileRoute("/forum/neu")({
 });
 
 function Page() {
- const [audience,setAudience]=useState("group"); const [title,setTitle]=useState(""); const [message,setMessage]=useState(""); const [submitted,setSubmitted]=useState(false);
+ const [audience,setAudience]=useState("group"); const [title,setTitle]=useState(""); const [message,setMessage]=useState(""); const [submitted,setSubmitted]=useState(false); const [attachment,setAttachment]=useState("");
   return <div className="min-h-screen flex flex-col bg-surface-base font-body-md text-text-primary">
     <SiteHeader />
     <main className="w-full pt-20 bg-surface-base min-h-[calc(100vh-20rem)]"><div className="flex flex-col w-full">
@@ -98,16 +98,16 @@ function Page() {
                   3. Deine erste Nachricht
                 </label>
 <div className="flex items-center gap-space-xxs bg-surface-subtle px-space-xs py-space-xxs rounded-lg text-secondary">
-<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Fett" type="button">
+<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Fett" type="button" onClick={() => setMessage(message + " **Text**")}>
 <span className="material-symbols-outlined text-[18px]">format_bold</span>
 </button>
-<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Kursiv" type="button">
+<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Kursiv" type="button" onClick={() => setMessage(message + " _Text_")}>
 <span className="material-symbols-outlined text-[18px]">format_italic</span>
 </button>
-<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Zitat" type="button">
+<button className="p-1 hover:text-text-primary rounded hover:bg-surface-variant transition-colors" title="Zitat" type="button" onClick={() => setMessage(message + " „Zitat“")}>
 <span className="material-symbols-outlined text-[18px]">format_quote</span>
 </button>
-<button className="p-1 hover:text-primary rounded hover:bg-surface-variant transition-colors flex items-center gap-1 text-primary" title="Meditations-Tipp Notiz" type="button">
+<button className="p-1 hover:text-primary rounded hover:bg-surface-variant transition-colors flex items-center gap-1 text-primary" title="Meditations-Tipp Notiz" type="button" onClick={() => setMessage(message + " Praxis-Tipp: ")}>
 <span className="material-symbols-outlined text-[18px]">spa</span>
 <span className="font-caption text-caption hidden sm:inline">Praxis-Tipp</span>
 </button>
@@ -125,7 +125,7 @@ function Page() {
 <label className="font-body-strong text-body-strong text-text-primary">
                 4. Anhänge (optional)
               </label>
-<div className="w-full bg-surface-subtle hover:bg-surface-muted transition-colors rounded-xl p-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md cursor-pointer" id="dropzone">
+<label className="w-full bg-surface-subtle hover:bg-surface-muted transition-colors rounded-xl p-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md cursor-pointer" id="dropzone"><input className="sr-only" type="file" accept=".pdf,.mp3,.m4a,.txt" onChange={event => setAttachment(event.target.files?.[0]?.name ?? "")} />
 <div className="flex items-center gap-space-md">
 <div className="w-12 h-12 rounded-full bg-surface-base flex items-center justify-center text-primary shadow-sm">
 <span className="material-symbols-outlined text-[24px]">attach_file</span>
@@ -135,18 +135,18 @@ function Page() {
 <span className="font-caption text-caption text-text-muted">PDF, Audioaufnahme (z. B. Meditationstagebuch) oder Text bis zu 15 MB</span>
 </div>
 </div>
-<button className="px-space-md py-space-xs bg-surface-base hover:bg-surface-container rounded-lg font-label-md text-label-md text-secondary shadow-sm transition-colors shrink-0" type="button">
+<span className="px-space-md py-space-xs bg-surface-base hover:bg-surface-container rounded-lg font-label-md text-label-md text-secondary shadow-sm transition-colors shrink-0">
                   Durchsuchen
-                </button>
-</div>
+                </span>
+</label>{attachment && <span className="font-caption text-caption text-primary">{attachment}</span>}
 </div>
 <div className="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-md">
-<Link to="/forum" className="w-full sm:w-auto px-space-lg py-space-sm text-center rounded-lg font-label-md text-label-md text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors" href="#">
+<Link to="/forum" className="w-full sm:w-auto px-space-lg py-space-sm text-center rounded-lg font-label-md text-label-md text-secondary hover:text-text-primary hover:bg-surface-muted transition-colors">
                 Abbrechen
               </Link>
 <div className="w-full sm:w-auto flex items-center gap-space-sm">
 <button className="w-full sm:w-auto px-space-xl py-space-sm rounded-lg bg-primary-container hover:bg-accent-ochre-hover text-on-primary font-body-strong text-body-strong shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-space-xs" id="submit-btn" type="button" onClick={()=>{if(title.trim() && message.trim())setSubmitted(true);else document.getElementById(!title.trim()?"topic-title":"topic-content")?.focus()}}>
-<span id="submit-text" className="">{submitted ? "Thema veröffentlicht" : "Thema veröffentlichen"}</span>
+<span id="submit-text" className="">{submitted ? "Thema vorbereitet" : "Thema veröffentlichen"}</span>
 <span className="material-symbols-outlined text-[20px]" id="submit-icon">send</span>
 </button>
 </div>
