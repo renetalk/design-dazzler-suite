@@ -9,3 +9,5 @@
 - [x] „Zum Thema" im ersten Forumseintrag verlinkt auf /forum/austausch-alltag
 - [x] Acht aktualisierte Screens übernehmen; neue Seite „Neues Thema anlegen“ ergänzen
 - [x] Navigation und vorhandene Bedienabläufe auf den neuen Ansichten prüfen
+- [x] Rechte Kurs-Seitenleiste an die aktualisierte Vorlage anpassen
+- [x] Kursinhalte als zwei Spalten ohne störende Vorlagenbeschriftung darstellen

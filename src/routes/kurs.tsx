@@ -19,6 +19,7 @@ export const Route = createFileRoute("/kurs")({
 
 function Page2() {
   const [tab, setTab] = useState<"notes" | "transcript">("notes");
+  const [expandedModule, setExpandedModule] = useState(3);
   return (
     <div className="min-h-screen flex flex-col bg-surface-base font-body-md text-text-primary">
       <SiteHeader />
@@ -116,78 +117,43 @@ function Page2() {
 </div>
 </div>
 
-<div className="lg:col-span-5 flex flex-col gap-space-xl">
+<div className="lg:col-span-5 flex min-w-0 flex-col gap-space-xl">
 
 <div className="bg-surface-subtle p-space-lg rounded-2xl">
 <h3 className="font-headline-md text-headline-sm text-text-primary mb-space-md font-normal">
               Kursübersicht
             </h3>
 <div className="space-y-space-xs">
-
-<div className="p-space-sm rounded-xl bg-surface-base flex items-center justify-between gap-space-sm transition-all hover:bg-surface-muted cursor-pointer">
-<div className="flex items-center gap-space-sm">
-<span className="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
-<span className="material-symbols-outlined text-[16px]">check</span>
-</span>
-<div>
-<span className="font-eyebrow text-eyebrow text-text-muted uppercase">Modul 1</span>
-<p className="font-label-md text-label-md text-text-primary">Einführung &amp; Was ist Meditation?</p>
+{[
+  { number: 1, title: "Einführung & Was ist Meditation?" },
+  { number: 2, title: "Der Körper als Anker" },
+].map((module) => (
+  <div key={module.number} className="overflow-hidden rounded-xl border border-border-subtle/50 bg-surface-base">
+    <button type="button" aria-expanded={expandedModule === module.number} onClick={() => setExpandedModule(expandedModule === module.number ? 0 : module.number)} className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-space-sm p-space-sm text-left transition-colors hover:bg-surface-muted/60">
+      <span className="flex min-w-0 items-center gap-space-sm">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-container text-primary-container"><span className="material-symbols-outlined text-[16px]">check</span></span>
+        <span className="min-w-0"><span className="flex flex-wrap items-center gap-space-xs"><span className="font-eyebrow text-eyebrow uppercase text-text-muted">Modul {module.number}</span><span className="font-caption text-caption text-text-muted">• 3 Lektionen</span></span><span className="block font-label-md text-label-md text-text-primary">{module.title}</span></span>
+      </span>
+      <span className="flex shrink-0 items-center gap-space-xs text-text-muted"><span className="hidden font-caption text-caption sm:inline">3/3 erledigt</span><span className="material-symbols-outlined text-[18px]">{expandedModule === module.number ? "expand_less" : "expand_more"}</span></span>
+    </button>
+    {expandedModule === module.number && <div className="border-t border-border-subtle/50 px-space-md py-space-xs font-caption text-caption text-text-muted">3 Lektionen abgeschlossen</div>}
+  </div>
+))}
+<div className="overflow-hidden rounded-xl border-2 border-primary-container/30 bg-surface-base shadow-sm">
+  <button type="button" aria-expanded={expandedModule === 3} onClick={() => setExpandedModule(expandedModule === 3 ? 0 : 3)} className="grid w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-space-sm border-b border-primary-container/20 bg-accent-ochre-light p-space-sm text-left">
+    <span className="flex min-w-0 items-center gap-space-sm"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-container text-surface-base shadow-sm"><span className="material-symbols-outlined ml-0.5 text-[16px]">play_arrow</span></span><span className="min-w-0"><span className="flex flex-wrap items-center gap-space-xs"><span className="font-eyebrow text-eyebrow font-bold uppercase text-primary-container">Modul 3 • Aktiv</span><span className="font-caption text-caption font-semibold text-primary-container">• 1/3 Videos</span></span><span className="block font-label-md text-label-md font-bold text-text-primary">Klänge und Atem erforschen</span></span></span>
+    <span className="flex shrink-0 items-center gap-space-xs text-primary-container"><span className="hidden font-caption text-caption font-semibold sm:inline">Laufend</span><span className="material-symbols-outlined text-[18px]">{expandedModule === 3 ? "expand_less" : "expand_more"}</span></span>
+  </button>
+  {expandedModule === 3 && <div className="ml-space-sm space-y-1 border-l-2 border-primary-container/20 py-space-xs pl-space-md pr-space-xs">
+    {[
+      { icon: "check", label: "3.1 Klänge und Geräusche als Stütze", status: "Fertig", active: false },
+      { icon: "play_arrow", label: "3.2 Den Atem erforschen", status: "Aktiv", active: true },
+      { icon: "play_circle", label: "3.3 Kurze Momente im Alltag", status: "Offen", active: false },
+    ].map((lesson) => <div key={lesson.label} className={`grid grid-cols-[minmax(0,1fr)_auto] items-center gap-space-xs rounded-lg p-space-xs ${lesson.active ? "border border-primary-container/30 bg-accent-ochre-light/70 shadow-sm" : "hover:bg-surface-muted"}`}><span className="flex min-w-0 items-center gap-space-xs"><span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full ${lesson.active ? "bg-primary-container text-surface-base" : "bg-surface-container text-primary-container"}`}><span className="material-symbols-outlined text-[14px]">{lesson.icon}</span></span><span className={`font-caption text-caption text-text-primary ${lesson.active ? "font-bold" : "font-semibold"}`}>{lesson.label}</span></span><span className={`shrink-0 rounded px-space-xs py-0.5 font-caption text-caption ${lesson.active ? "bg-surface-base/80 font-bold text-primary-container" : "bg-surface-muted text-text-muted"}`}>{lesson.status}</span></div>)}
+  </div>}
 </div>
-</div>
-<span className="font-caption text-caption text-text-muted">Abgeschlossen</span>
-</div>
-
-<div className="p-space-sm rounded-xl bg-surface-base flex items-center justify-between gap-space-sm transition-all hover:bg-surface-muted cursor-pointer">
-<div className="flex items-center gap-space-sm">
-<span className="w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-primary-container">
-<span className="material-symbols-outlined text-[16px]">check</span>
-</span>
-<div>
-<span className="font-eyebrow text-eyebrow text-text-muted uppercase">Modul 2</span>
-<p className="font-label-md text-label-md text-text-primary">Der Körper als Anker</p>
-</div>
-</div>
-<span className="font-caption text-caption text-text-muted">Abgeschlossen</span>
-</div>
-
-<div className="p-space-sm rounded-xl bg-accent-ochre-light flex items-center justify-between gap-space-sm shadow-sm">
-<div className="flex items-center gap-space-sm">
-<span className="w-7 h-7 rounded-full bg-primary-container flex items-center justify-center text-surface-base">
-<span className="material-symbols-outlined text-[16px] ml-0.5">play_arrow</span>
-</span>
-<div>
-<span className="font-eyebrow text-eyebrow text-primary-container font-bold uppercase">Modul 3 • Aktiv</span>
-<p className="font-label-md text-label-md text-text-primary font-bold">Klänge und Atem erforschen</p>
-</div>
-</div>
-<span className="text-primary-container text-body-sm font-semibold">Jetzt</span>
-</div>
-
-<div className="p-space-sm rounded-xl bg-surface-base/60 flex items-center justify-between gap-space-sm opacity-80">
-<div className="flex items-center gap-space-sm">
-<span className="w-7 h-7 rounded-full bg-surface-muted flex items-center justify-center text-text-muted">
-<span className="material-symbols-outlined text-[16px]">schedule</span>
-</span>
-<div>
-<span className="font-eyebrow text-eyebrow text-text-muted uppercase">Modul 4</span>
-<p className="font-label-md text-label-md text-text-muted">Gedanken und Gefühle als Freunde</p>
-</div>
-</div>
-<span className="font-caption text-caption text-text-muted">In 4 Tagen</span>
-</div>
-
-<div className="p-space-sm rounded-xl bg-surface-base/40 flex items-center justify-between gap-space-sm opacity-50">
-<div className="flex items-center gap-space-sm">
-<span className="w-7 h-7 rounded-full bg-surface-muted flex items-center justify-center text-text-muted">
-<span className="material-symbols-outlined text-[16px]">lock</span>
-</span>
-<div>
-<span className="font-eyebrow text-eyebrow text-text-muted uppercase">Modul 5 &amp; 6</span>
-<p className="font-label-md text-label-md text-text-muted">Gewahrsein im Alltag vertiefen</p>
-</div>
-</div>
-<span className="font-caption text-caption text-text-muted">Gesperrt</span>
-</div>
+<div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-space-sm rounded-xl border border-border-subtle/40 bg-surface-base/60 p-space-sm opacity-80"><span className="flex min-w-0 items-center gap-space-sm"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-muted text-text-muted"><span className="material-symbols-outlined text-[16px]">schedule</span></span><span className="min-w-0"><span className="flex flex-wrap gap-space-xs"><span className="font-eyebrow text-eyebrow uppercase text-text-muted">Modul 4</span><span className="font-caption text-caption text-text-muted">• 3 Lektionen</span></span><span className="block font-label-md text-label-md text-text-muted">Gedanken und Gefühle als Freunde</span></span></span><span className="shrink-0 font-caption text-caption text-text-muted">In 4 Tagen</span></div>
+<div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-space-sm rounded-xl border border-border-subtle/30 bg-surface-base/40 p-space-sm opacity-50"><span className="flex min-w-0 items-center gap-space-sm"><span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-surface-muted text-text-muted"><span className="material-symbols-outlined text-[16px]">lock</span></span><span className="min-w-0"><span className="flex flex-wrap gap-space-xs"><span className="font-eyebrow text-eyebrow uppercase text-text-muted">Modul 5 &amp; 6</span><span className="font-caption text-caption text-text-muted">• 6 Lektionen</span></span><span className="block font-label-md text-label-md text-text-muted">Gewahrsein im Alltag vertiefen</span></span></span><span className="shrink-0 font-caption text-caption text-text-muted">Gesperrt</span></div>
 </div>
 </div>
 

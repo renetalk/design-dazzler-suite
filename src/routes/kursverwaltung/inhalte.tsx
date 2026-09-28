@@ -35,9 +35,8 @@ function Page() {
 <div className="flex items-center gap-space-sm shrink-0">
 </div>
 </div>
-<div className="flex flex-col lg:flex-row items-start gap-space-xl mb-space-4xl">
- Left Sidebar: Kursbaum / Modulübersicht 
-<aside className="w-full lg:w-80 xl:w-96 shrink-0 bg-surface-subtle rounded-xl p-space-md shadow-sm space-y-space-md border border-border-subtle/50 lg:sticky lg:top-24">
+<div className="grid grid-cols-1 lg:grid-cols-[minmax(0,19rem)_minmax(0,1fr)] xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] items-start gap-space-xl mb-space-4xl">
+<aside className="w-full min-w-0 bg-surface-subtle rounded-xl p-space-md shadow-sm space-y-space-md border border-border-subtle/50 lg:sticky lg:top-24">
 <div className="flex items-center justify-between pb-space-xs border-b border-border-subtle/40">
 <div>
 <span className="font-eyebrow text-eyebrow text-text-muted uppercase tracking-wider block">Kursstruktur</span>
@@ -207,7 +206,6 @@ function Page() {
 </div>
 </div>
 </div>
- Geführte Meditationen (Audios) 
 <div className="bg-surface-subtle p-space-xl rounded-xl shadow-sm space-y-space-md border border-border-subtle/40">
 <div className="flex items-center justify-between">
 <div>
