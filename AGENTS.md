@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep each supplied Tergar screen as a TanStack file route; the new-topic form lives at `/forum/neu`, while shared navigation remains in `SiteHeader` so all screens stay consistent.
